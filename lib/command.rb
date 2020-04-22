@@ -1,9 +1,11 @@
 # frozen_string_literal: true
 
+require 'active_support/core_ext/string'
 require 'active_model'
 require 'dry-initializer'
 require 'dry-monads'
 
+require 'command/input_middleware'
 require 'command/interrupt'
 
 module Command
@@ -44,12 +46,18 @@ module Command
   end
 
   class_methods do
-    def run(*args)
-      new(*args).run
+    def run(inputs = {})
+      new(normalize_inputs(inputs)).run
     end
 
-    def run!(*args)
-      run(*args).value!
+    def run!(inputs = {})
+      run(inputs).value!
+    end
+
+    private
+
+    def normalize_inputs(inputs)
+      Command::InputMiddleware.call(inputs)
     end
   end
 end
