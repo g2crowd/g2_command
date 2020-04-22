@@ -25,6 +25,12 @@ RSpec.describe Command do
     end
   end
 
+  describe '::new' do
+    it 'can instantiate with string keys' do
+      expect(command.new('age' => 3).age).to eq 3
+    end
+  end
+
   describe '::run' do
     context 'when execute is not defined' do
       subject(:command) do

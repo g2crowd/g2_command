@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    g2_command (0.2.0)
+    g2_command (0.3.0)
       activemodel (>= 6.0, < 7)
       activesupport (>= 6.0, < 7)
       dry-initializer (~> 3.0)
