@@ -18,6 +18,7 @@ RSpec.describe Command do
       def execute
         if age == 10
           errors.add(:age, 'must not be equal to 10')
+          'goodbye'
         else
           'hello'
         end
@@ -54,22 +55,30 @@ RSpec.describe Command do
       end
 
       context 'when validations fail' do
+        let(:monad) { command.run(age: 30) }
+
         it 'returns failure monad' do
-          expect(command.run(age: 30)).to be_failure
+          expect(monad).to be_failure
         end
 
         it 'contains validation message' do
-          expect(command.run(age: 30).failure.full_messages.to_sentence).to eq 'Age must be less than or equal to 20'
+          expect(monad.failure.errors.full_messages.to_sentence).to eq 'Age must be less than or equal to 20'
         end
       end
 
       context 'when validations fail during execution' do
+        let(:monad) { command.run(age: 10) }
+
         it 'returns failure monad' do
-          expect(command.run(age: 10)).to be_failure
+          expect(monad).to be_failure
         end
 
         it 'contains validation message' do
-          expect(command.run(age: 10).failure.full_messages.to_sentence).to eq 'Age must not be equal to 10'
+          expect(monad.failure.errors.full_messages.to_sentence).to eq 'Age must not be equal to 10'
+        end
+
+        it 'contains result' do
+          expect(monad.failure.result).to eq 'goodbye'
         end
       end
     end
@@ -126,7 +135,7 @@ RSpec.describe Command do
     end
 
     it 'merges errors' do
-      expect(command.run(name: 'John').failure.full_messages.to_sentence).to eq 'Name must not be John'
+      expect(command.run(name: 'John').failure.errors.full_messages.to_sentence).to eq 'Name must not be John'
     end
 
     it 'returns value' do

@@ -5,6 +5,7 @@ require 'active_model'
 require 'dry-initializer'
 require 'dry-monads'
 
+require 'command/failure'
 require 'command/input_middleware'
 require 'command/interrupt'
 
@@ -34,13 +35,13 @@ module Command
                  end
                end
 
-      errors.empty? ? Success(result) : Failure(errors)
+      errors.empty? ? Success(result) : Failure(Command::Failure.new(result, errors))
     end
 
     def compose(command, *args)
       outcome = command.run(*args)
 
-      raise Command::Interrupt, outcome.failure if outcome.failure?
+      raise Command::Interrupt, outcome.failure.errors if outcome.failure?
 
       outcome.value!
     end
