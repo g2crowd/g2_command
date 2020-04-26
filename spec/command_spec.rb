@@ -30,6 +30,17 @@ RSpec.describe Command do
     it 'can instantiate with string keys' do
       expect(command.new('age' => 3).age).to eq 3
     end
+
+    context 'when overriding initializer' do
+      it 'does not clear existing errors' do
+        command.define_method :initialize do |*args|
+          super(*args)
+          errors.add(:base, 'invalid')
+        end
+
+        expect(command.run(age: 3).failure.result).to be_nil
+      end
+    end
   end
 
   describe '::run' do

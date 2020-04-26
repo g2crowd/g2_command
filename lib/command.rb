@@ -27,7 +27,7 @@ module Command
     end
 
     def run
-      result = if valid?
+      result = if errors.empty? && valid?
                  begin
                    execute
                  rescue Command::Interrupt => e
