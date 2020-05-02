@@ -19,11 +19,5 @@ RSpec.describe Command::InputMiddleware do
     it_behaves_like 'a symbolized hash', ActionController::Parameters.new('age' => 20, 'name' => 'John Doe')
     it_behaves_like 'a symbolized hash', { age: 20, name: 'John Doe' }.with_indifferent_access
     it_behaves_like 'a symbolized hash', { 'age' => 20, 'name' => 'John Doe' }
-
-    context 'when input is nested hash' do
-      it 'symbolizes all keys' do
-        expect(middleware.call('a' => { 'b' => 1, 'c' => 2 })).to eq a: { b: 1, c: 2 }
-      end
-    end
   end
 end

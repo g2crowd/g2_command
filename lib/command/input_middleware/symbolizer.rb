@@ -8,7 +8,7 @@ module Command
       def self.call(inputs)
         return inputs unless inputs.is_a?(Hash)
 
-        inputs.to_h.deep_symbolize_keys
+        inputs.to_h.symbolize_keys
       end
     end
   end
