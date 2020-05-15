@@ -33,8 +33,8 @@ RSpec.describe Command do
 
     context 'when overriding initializer' do
       it 'does not clear existing errors' do
-        command.define_method :initialize do |*args|
-          super(*args)
+        command.define_method :initialize do |**args|
+          super(**args)
           errors.add(:base, 'invalid')
         end
 

@@ -19,7 +19,7 @@ module Command
     include ActiveModel::Validations
 
     def initialize(inputs = {})
-      super(Command::InputMiddleware.call(inputs))
+      super(**Command::InputMiddleware.call(inputs))
     end
 
     def execute
@@ -54,7 +54,7 @@ module Command
 
   class_methods do
     def run(inputs = {})
-      new(inputs).run
+      new(**inputs).run
     end
 
     def run!(inputs = {})
