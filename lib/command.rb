@@ -12,7 +12,6 @@ require 'command/interrupt'
 module Command
   extend ActiveSupport::Concern
 
-  # rubocop:disable Metrics/BlockLength
   included do
     extend Dry::Initializer
     include Dry::Monads[:result]
@@ -50,7 +49,6 @@ module Command
       self.class.dry_initializer.attributes(self)
     end
   end
-  # rubocop:enable Metrics/BlockLength
 
   class_methods do
     def run(inputs = {})
