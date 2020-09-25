@@ -1,11 +1,12 @@
+inherit_gem:
+  rubocop-g2:
+    - config/rspec/default.yml
+
+require:
+  - rubocop-rspec
+
 inherit_from:
   - ../.rubocop.yml
 
-Metrics/BlockLength:
+Style/RescueModifier:
   Enabled: false
-
-RSpec/LetSetup:
-  Enabled: false
-
-RSpec/NestedGroups:
-  Max: 4
