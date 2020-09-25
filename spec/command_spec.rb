@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'spec_helper'
+require 'dry/monads/errors'
 
 RSpec.describe Command do
   subject(:command) do
