@@ -64,6 +64,10 @@ RSpec.describe Command do
         it 'contains result' do
           expect(command.run(age: 20).value!).to eq 'hello'
         end
+
+        it 'can accept rails hash' do
+          expect(command.run(ActionController::Parameters.new(age: 20)).value!).to eq 'hello'
+        end
       end
 
       context 'when validations fail' do
