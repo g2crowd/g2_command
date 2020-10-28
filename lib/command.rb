@@ -53,7 +53,7 @@ module Command
 
   class_methods do
     def run(inputs = {})
-      new(**inputs).run
+      new(inputs).run
     end
 
     def run!(inputs = {})
