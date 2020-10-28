@@ -5,6 +5,7 @@ require 'active_model'
 require 'dry-initializer'
 require 'dry-monads'
 
+require 'gem_ext/active_model/errors' if ActiveModel.version < Gem::Version.new('5.2')
 require 'command/failure'
 require 'command/input_middleware'
 require 'command/interrupt'
