@@ -8,6 +8,8 @@ require:
 
 AllCops:
   TargetRubyVersion: 2.7
+  Exclude:
+    - gemfiles/*
 
 Style/Documentation:
   Enabled: false
