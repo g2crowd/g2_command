@@ -1,83 +1,24 @@
 version: 2.1
 
 orbs:
-  ruby: g2crowd/ruby@0.0.12
-
-commands:
-  load-cache:
-    description: 'Load cached RubyGems.'
-    parameters:
-      key:
-        description: 'The cache key to use. The key is immutable.'
-        type: string
-        default: 'gems-v1'
-      gemfile:
-        description: 'The gemfile to use'
-        type: string
-        default: 'Gemfile.lock'
-    steps:
-      - restore_cache:
-          keys:
-            - << parameters.key >>-{{ checksum "<< parameters.gemfile >>" }}
-            - << parameters.key >>-
-  save-cache:
-    description: "Save RubyGems to cache."
-    parameters:
-      key:
-        description: "The cache key to use. The key is immutable."
-        type: string
-        default: "gems-v1"
-      gemfile:
-        description: 'The gemfile to use'
-        type: string
-        default: 'Gemfile.lock'
-    steps:
-      - save_cache:
-          key: << parameters.key >>-{{ checksum "<< parameters.gemfile >>" }}
-          paths:
-            - vendor/bundle
-
-jobs:
-  appraisal:
-    parameters:
-      ruby:
-        description: 'The ruby version to use'
-        type: string
-        default: '2.7.1'
-      gemfile:
-        description: 'The gemfile version to use'
-        type: string
-        default: '6.0'
-    executor:
-      name: ruby/ruby
-      ruby: << parameters.ruby >>
-    environment:
-      BUNDLE_GEMFILE: gemfiles/rails_<< parameters.gemfile >>.gemfile
-    steps:
-      - checkout
-      - load-cache:
-          gemfile: gemfiles/rails_<< parameters.gemfile >>.gemfile
-      - ruby/install-deps:
-          bundler-version: '2.1.4'
-      - save-cache:
-          gemfile: gemfiles/rails_<< parameters.gemfile >>.gemfile
-      - run:
-          name: Run Specs
-          command: bundle exec appraisal rails-<< parameters.gemfile >> rspec --require fivemat --format Fivemat
+  ruby: g2crowd/ruby@0.0.13
 
 workflows:
   version: 2
   build:
     jobs:
-      - appraisal:
+      - ruby/appraisal:
           context: g2crowd-global
           matrix:
             parameters:
-              ruby: ['2.4.10', '2.5.8', '2.6.6', '2.7.1']
-              gemfile: ['5.1', '5.2', '6.0']
+              ruby: ['2.4.10', '2.5.8', '2.6.6', '2.7.2']
+              appraisal:
+                - rails_5.1
+                - rails_5.2
+                - rails_6.0
             exclude:
               - ruby: '2.4.10'
-                gemfile: '6.0'
+                appraisal: rails_6.0
       - ruby/build:
           context: g2crowd-global
           setup-database: false

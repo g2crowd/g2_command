@@ -127,9 +127,8 @@ RSpec.describe Command do
       end
     end
 
-    # rubocop:disable RSpec/LeakyConstantDeclaration
     let!(:other_command) do
-      OtherRunnable = Class.new do
+      stub_const('OtherRunnable', Class.new do
         include Command
 
         option :name
@@ -138,12 +137,7 @@ RSpec.describe Command do
           errors.add(:name, 'must not be John') if name == 'John'
           'Successfully ran OtherRunnable'
         end
-      end
-    end
-    # rubocop:enable RSpec/LeakyConstantDeclaration
-
-    after do
-      Object.send :remove_const, 'OtherRunnable'
+      end)
     end
 
     it 'merges errors' do
