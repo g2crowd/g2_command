@@ -126,7 +126,7 @@ RSpec.describe Command do
         end
 
         def execute
-          compose OtherRunnable, name: name
+          compose OtherRunnable, inputs
         end
       end
     end
