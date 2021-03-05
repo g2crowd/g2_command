@@ -38,8 +38,8 @@ module Command
       errors.empty? ? Success(result) : Failure(Command::Failure.new(result, errors))
     end
 
-    def compose(command, **args)
-      outcome = command.run(**args)
+    def compose(command, *args)
+      outcome = command.run(*args)
 
       raise Command::Interrupt, outcome.failure.errors if outcome.failure?
 
