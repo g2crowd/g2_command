@@ -38,8 +38,8 @@ module Command
       errors.empty? ? Success(result) : Failure(Command::Failure.new(result, errors))
     end
 
-    def compose(command, *args)
-      outcome = command.run(*args)
+    def compose(command, **args)
+      outcome = command.run(**args)
 
       raise Command::Interrupt, outcome.failure.errors if outcome.failure?
 
@@ -53,7 +53,7 @@ module Command
 
   class_methods do
     def run(inputs = {})
-      new(inputs).run
+      new(**Command::InputMiddleware.call(inputs)).run
     end
 
     def run!(inputs = {})
