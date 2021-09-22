@@ -28,10 +28,6 @@ RSpec.describe Command do
   end
 
   describe '::new' do
-    it 'can instantiate with string keys' do
-      expect(command.new('age' => 3).age).to eq 3
-    end
-
     context 'when overriding initializer' do
       it 'does not clear existing errors' do
         command.__send__ :define_method, :initialize do |**args|
@@ -116,19 +112,15 @@ RSpec.describe Command do
 
   describe '#compose' do
     subject(:command) do
-      Class.new do
+      stub_const('RunnableClass', Class.new do
         include Command
 
         option :name
 
-        def self.name
-          'RunnableClass'
-        end
-
         def execute
           compose OtherRunnable, inputs
         end
-      end
+      end)
     end
 
     let!(:other_command) do
@@ -154,8 +146,20 @@ RSpec.describe Command do
   end
 
   describe '#inputs' do
+    subject(:command) do
+      stub_const('RunnableClass', Class.new do
+        include Command
+
+        option :age
+
+        def execute
+          inputs
+        end
+      end)
+    end
+
     it 'returns inputs' do
-      expect(command.new(age: 30).inputs).to eq age: 30
+      expect(command.run!(age: 30)).to eq age: 30
     end
   end
 end
