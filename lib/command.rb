@@ -18,6 +18,8 @@ module Command
     include Dry::Monads[:result]
     include ActiveModel::Validations
 
+    private_class_method :new
+
     def initialize(inputs = {})
       super(**Command::InputMiddleware.call(inputs))
     end

@@ -11,18 +11,18 @@ workflows:
           context: g2crowd-global
           matrix:
             parameters:
-              ruby: ['2.6.6', '2.7.2', '3.0.0']
+              ruby: ['2.6.8', '2.7.4', '3.0.2']
               appraisal:
                 - rails_5.1
                 - rails_5.2
                 - rails_6.0
                 - rails_6.1
             exclude:
-              - ruby: '3.0.0'
+              - ruby: '3.0.2'
                 appraisal: rails_5.1
-              - ruby: '3.0.0'
+              - ruby: '3.0.2'
                 appraisal: rails_5.2
-              - ruby: '3.0.0'
+              - ruby: '3.0.2'
                 appraisal: rails_6.0
       - ruby/build:
           context: g2crowd-global
