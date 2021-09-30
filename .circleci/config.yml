@@ -27,4 +27,4 @@ workflows:
       - ruby/build:
           context: g2crowd-global
           setup-database: false
-          bundler-version: '2.1.4'
+          bundler-version: '2.2.22'
