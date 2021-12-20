@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    g2_command (3.0.0)
+    g2_command (3.1.0)
       activemodel (>= 5.0, < 7.1)
       activesupport (>= 5.0, < 7.1)
       dry-initializer (~> 3.0)
@@ -215,4 +215,4 @@ DEPENDENCIES
   simplecov (= 0.16.1)
 
 BUNDLED WITH
-   2.2.22
+   2.2.32
