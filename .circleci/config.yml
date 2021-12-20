@@ -1,7 +1,7 @@
 version: 2.1
 
 orbs:
-  ruby: g2crowd/ruby@0.0.13
+  ruby: g2crowd/ruby@0.1.0
 
 workflows:
   version: 2
@@ -11,20 +11,16 @@ workflows:
           context: g2crowd-global
           matrix:
             parameters:
-              ruby: ['2.6.8', '2.7.4', '3.0.2']
+              ruby: ['2.7.5', '3.0.3']
               appraisal:
-                - rails_5.1
-                - rails_5.2
                 - rails_6.0
                 - rails_6.1
+                - rails_7.0
             exclude:
-              - ruby: '3.0.2'
-                appraisal: rails_5.1
-              - ruby: '3.0.2'
-                appraisal: rails_5.2
-              - ruby: '3.0.2'
+              - ruby: '3.0.3'
                 appraisal: rails_6.0
       - ruby/build:
           context: g2crowd-global
+          ruby: '3.0.3'
           setup-database: false
-          bundler-version: '2.2.22'
+          bundler-version: '2.2.32'
