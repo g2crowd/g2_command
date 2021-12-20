@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'active_support/core_ext/string'
+require 'active_support/all'
 require 'active_model'
 require 'dry-initializer'
 require 'dry-monads'

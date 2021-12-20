@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'active_support/core_ext/hash'
-
 module Command
   module InputMiddleware
     class Symbolizer
