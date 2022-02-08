@@ -22,6 +22,30 @@ Or install it yourself as:
 
 TODO: Write usage instructions here
 
+## RSpec Helper
+
+In `spec_helper.rb`:
+
+```ruby
+require 'command/test_helper'
+
+RSpec.configure do |config|
+  config.include Command::TestHelper
+end
+```
+
+Create a Success outcome object:
+
+```ruby
+  let(:outcome) { create_outcome(value: 'Return value') }
+```
+
+Create a Failure outcome object:
+
+```ruby
+  let(:outcome) { create_outcome(errors: { user: 'is invalid' }) }
+```
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
