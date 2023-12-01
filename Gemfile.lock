@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    g2_command (3.2.1)
+    g2_command (3.2.0)
       activemodel (>= 5.0)
       activesupport (>= 5.0)
       dry-initializer (~> 3.0)
@@ -267,6 +267,7 @@ GEM
 
 PLATFORMS
   arm64-darwin-22
+  arm64-darwin-23
 
 DEPENDENCIES
   appraisal
