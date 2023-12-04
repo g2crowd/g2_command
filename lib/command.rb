@@ -17,6 +17,7 @@ module Command
     extend Dry::Initializer
     include Dry::Monads[:result]
     include ActiveModel::Validations
+    include ActiveRecord::Normalization
 
     private_class_method :new
 

@@ -267,6 +267,7 @@ GEM
 
 PLATFORMS
   arm64-darwin-22
+  arm64-darwin-23
 
 DEPENDENCIES
   appraisal
@@ -281,4 +282,4 @@ DEPENDENCIES
   simplecov (= 0.16.1)
 
 BUNDLED WITH
-   2.4.20
+   2.4.19
