@@ -1,0 +1,25 @@
+name: Ruby CI
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        ruby: ['2.7.5', '3.0.3', '3.1.0']
+        appraisal: ['rails_6.1', 'rails_7.0']
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby }}
+          bundler: '2.3.10'
+      - name: Install dependencies
+        run: |
+          bundle install
+      - name: Install appraisal dependencies
+        run: bundle exec appraisal install
+      - name: Run appraisal
+        run: bundle exec appraisal ${{ matrix.appraisal }} rspec
