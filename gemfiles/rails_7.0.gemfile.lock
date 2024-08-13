@@ -1,9 +1,9 @@
 PATH
   remote: ..
   specs:
-    g2_command (3.2.0)
-      activemodel (>= 5.0, < 7.1)
-      activesupport (>= 5.0, < 7.1)
+    g2_command (3.2.1)
+      activemodel (>= 5.0, < 7.3)
+      activesupport (>= 5.0, < 7.3)
       dry-initializer (~> 3.0)
       dry-monads (~> 1.3)
 
@@ -87,9 +87,9 @@ GEM
     diff-lcs (1.4.4)
     digest (3.1.0)
     docile (1.4.0)
-    dry-core (0.7.1)
+    dry-core (0.8.1)
       concurrent-ruby (~> 1.0)
-    dry-initializer (3.0.4)
+    dry-initializer (3.1.1)
     dry-monads (1.4.0)
       concurrent-ruby (~> 1.0)
       dry-core (~> 0.7)
@@ -124,7 +124,7 @@ GEM
       digest
       net-protocol
       timeout
-    nio4r (2.5.8)
+    nio4r (2.7.3)
     nokogiri (1.13.4)
       mini_portile2 (~> 2.8.0)
       racc (~> 1.4)
