@@ -1,6 +1,8 @@
 name: Ruby CI
 
-on: [push, pull_request]
+on:
+  pull_request:
+    types: [opened, synchronize]
 
 jobs:
   build:
