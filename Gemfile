@@ -6,6 +6,7 @@ gemspec
 
 gem 'appraisal'
 gem 'fivemat'
+gem 'nokogiri', '< 1.16'
 gem 'pry'
 gem 'rails'
 gem 'rake', '~> 12.0'
